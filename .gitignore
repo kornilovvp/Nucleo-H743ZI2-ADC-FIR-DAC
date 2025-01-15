@@ -45,3 +45,4 @@ Backup*
 
 # IAR .dep files
 *.dep
+/EWARM/Nucleo-H743ZI2-ADC-FIR-DAC/BrowseInfo
