@@ -8,6 +8,8 @@ PA4 - DAC output not filters (YELLOW
 
 PA5 - DAC output filtered (PINK)
 
+Do not forget about anti aliasing filter at 100 KHz and higher.
+
 ![image](https://github.com/user-attachments/assets/e9628bcb-fa8d-420a-b091-eef1030bedeb)
 
 
