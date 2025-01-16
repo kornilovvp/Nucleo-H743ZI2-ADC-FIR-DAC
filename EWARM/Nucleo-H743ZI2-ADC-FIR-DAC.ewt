@@ -1439,10 +1439,19 @@
                     <name>$PROJ_DIR$\..\Core\Src\main.c</name>
                 </file>
                 <file>
+                    <name>$PROJ_DIR$\..\Core\Inc\main.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\Core\Inc\stm32h7xx_hal_conf.h</name>
+                </file>
+                <file>
                     <name>$PROJ_DIR$\..\Core\Src\stm32h7xx_hal_msp.c</name>
                 </file>
                 <file>
                     <name>$PROJ_DIR$\..\Core\Src\stm32h7xx_it.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\Core\Inc\stm32h7xx_it.h</name>
                 </file>
             </group>
         </group>
