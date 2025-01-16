@@ -3,7 +3,9 @@ The ADC data at 100 kHz goes through the software FIR filter and reaches the DAC
 You can connect a signal generator and an oscilloscope to the PCB to investigate the signals.
 
 PA6 - Analog input
-PA4 - DAC output not filters (YELLOW)
+
+PA4 - DAC output not filters (YELLOW
+
 PA5 - DAC output filtered (PINK)
 
 ![image](https://github.com/user-attachments/assets/e9628bcb-fa8d-420a-b091-eef1030bedeb)
