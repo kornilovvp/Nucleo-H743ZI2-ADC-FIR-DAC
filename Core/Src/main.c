@@ -94,7 +94,7 @@ uint32_t adc_value = 0;
 /* Pass Band Frequency = 2.000 KHz                                            */
 /*                                                                            */
 /******************************************************************************/
-
+/*
 float IIR_FILTER(float invar, int initval, int setic)
 {
     float sumnum=0.0, sumden=0.0;  int i=0;
@@ -125,33 +125,48 @@ float IIR_FILTER(float invar, int initval, int setic)
         return sumnum;
     }
 }
+*/
 
 
 
 
+/******************************************************************************/
+/* 5th Order Low Pass Bessel                                                  */
+/* Matched Z Transformation                                                   */
+/* Sample Frequency = 100.0 KHz                                               */
+/* Standard Form                                                              */
+/* Arithmetic Precision = 8 Digits                                            */
+/*                                                                            */
+/* Pass Band Frequency = 4.000 KHz                                            */
+/*                                                                            */
+/******************************************************************************/
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+float IIR_FILTER(float invar, int initval, int setic)
+{
+    float sumnum=0.0, sumden=0.0;  int i=0;
+    static float states[5] = {0.0,0.0,0.0,0.0,0.0};
+    static float zden[5] = {
+        -.38376163,
+        2.2964782,
+        -5.5276281,
+        6.6919984,
+        -4.0764641
+    };
+    if (setic==1){
+        for (i=0;i<5;i++) states[i] = initval;
+        return initval;
+    }
+    else{
+        sumnum = sumden = 0.0;
+        for (i=0;i<5;i++){
+            sumden += states[i]*zden[i];
+            if (i<4) states[i] = states[i+1];
+        }
+        states[4] = invar-sumden;
+        sumnum += states[4]*6.2278428e-04;
+        return sumnum;
+    }
+}
 
 
 
@@ -181,7 +196,7 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc)
     {
         HAL_GPIO_TogglePin( LD2_GPIO_Port, LD2_Pin);
         
-        HAL_GPIO_WritePin( LD3_GPIO_Port, LD3_Pin, GPIO_PIN_SET );
+        HAL_GPIO_WritePin( LD3_GPIO_Port, LD3_Pin, GPIO_PIN_RESET );
         
         
         
@@ -198,7 +213,7 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc)
         
         
         
-        HAL_GPIO_WritePin( LD3_GPIO_Port, LD3_Pin, GPIO_PIN_RESET );
+        HAL_GPIO_WritePin( LD3_GPIO_Port, LD3_Pin, GPIO_PIN_SET );
     }
 
 }
